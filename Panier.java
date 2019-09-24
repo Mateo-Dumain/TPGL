@@ -9,6 +9,9 @@ public class Panier{
 		p.ajoute(new Orange(12,"ayaa"));
 		System.out.println(p.estPlein());
 		System.out.println(p.getNbFruit());
+		System.out.println(p.getPrix());
+		p.retire();
+		System.out.println(p.getPrix());
 	}
 	
 	private	ArrayList<Orange> liste;
@@ -22,6 +25,19 @@ public class Panier{
 	public void ajoute(Orange o){
 		if(this.liste.size() < this.contenance)
 			liste.add(o);
+	}
+	
+	public void retire(){
+		if(getNbFruit() > 0)
+			this.liste.remove(this.liste.size()-1);
+	}
+	
+	public double getPrix(){
+		double res = 0;
+		for(Orange o : liste){
+			res += o.getPrix();
+		}
+		return res;
 	}
 	
 	public boolean estPlein(){return this.liste.size() == this.contenance;}
